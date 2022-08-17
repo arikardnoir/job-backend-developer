@@ -14,6 +14,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    echo "api rodando";
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Product
+Route::controller(App\Http\Controllers\V1\ProductController::class)->group(function(){
+    Route::get('products', 'index');
+    Route::post('products', 'store');
+    Route::get('products/{id}', 'show');
+    Route::put('products/{id}', 'update');
+    Route::get('products/delete/{id}', 'destroy');
+});
+
+// Route::get('product', 'V1\ProductController@index');
+// Route::post('product', 'V1\ProductController@store');
+// Route::get('product/{id}', 'V1\ProductController@show');
+// Route::post('product/{id}', 'V1\ProductController@update');
+// Route::delete('product/{id}', 'V1\ProductController@delete');
