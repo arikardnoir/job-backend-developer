@@ -31,8 +31,3 @@ Route::controller(App\Http\Controllers\V1\ProductController::class)->group(funct
     Route::get('products/delete/{id}', 'destroy');
 });
 
-// Route::get('product', 'V1\ProductController@index');
-// Route::post('product', 'V1\ProductController@store');
-// Route::get('product/{id}', 'V1\ProductController@show');
-// Route::post('product/{id}', 'V1\ProductController@update');
-// Route::delete('product/{id}', 'V1\ProductController@delete');
