@@ -17,10 +17,10 @@ return new class extends Migration
             Schema::create('products', function (Blueprint $table) {
                 $table->id()->unique();
                 $table->string('name')->unique();
-                $table->decimal('price', 10, 2);
+                $table->decimal('price', 10, 5);
                 $table->text('description');
                 $table->string('category');
-                $table->text('image')->nullable()->default(null);
+                $table->text('image_url')->nullable()->default(null);
                 $table->timestamps();
             });
         }
