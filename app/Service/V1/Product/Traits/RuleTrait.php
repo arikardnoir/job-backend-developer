@@ -16,7 +16,7 @@ namespace App\Service\V1\Product\Traits;
 trait RuleTrait
 {
 
-    public function rules($id = null)
+    public function rules()
     {
         return [
             'name' => 'required|string|max:500|unique:products',
@@ -25,6 +25,5 @@ trait RuleTrait
             'category' => 'required|string|max:255',
             'image_url' => 'max:5000',
         ];
-
     }
 }

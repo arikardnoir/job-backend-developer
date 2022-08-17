@@ -26,6 +26,54 @@ class ProductTest extends TestCase
     }
 
     /**
+     * Test to get all products with filter by name or category
+     *
+     * @return void
+     */
+    public function test_get_all_products_by_name_or_category()
+    {
+        $response = $this->get('/api/products?searchQuery=Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops');
+
+        $response->assertStatus(Response::HTTP_OK);
+    }
+
+    /**
+     * Test to get all products with filter by name or category
+     *
+     * @return void
+     */
+    public function test_get_all_products_by_category()
+    {
+        $response = $this->get("/api/products?category=men's clothing");
+
+        $response->assertStatus(Response::HTTP_OK);
+    }
+        
+    /**
+     * Test to get all products with filter by name or category
+     *
+     * @return void
+     */
+    public function test_get_all_products_that_has_image()
+    {
+        $response = $this->get("/api/products?hasImage=true");
+
+        $response->assertStatus(Response::HTTP_OK);
+    }
+
+    /**
+     * Test to get all products with filter by name or category
+     *
+     * @return void
+     */
+    public function test_get_all_products_that_has_not_image()
+    {
+        $response = $this->get("/api/products?hasImage=false");
+
+        $response->assertStatus(Response::HTTP_OK);
+    }
+
+    /**
      * Test to store product success
      *
      * @return void

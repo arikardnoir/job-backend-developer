@@ -23,12 +23,7 @@ class ProductServiceUpdate
 
     public function update(int $id, $request)
     {
-        $attributes = null;
-        if (is_object($request)) {
-            $attributes = $request->all();
-        } else {
-            $attributes = $request;
-        }
+        $attributes = $request;
 
         if (!$this->productRepository->show((int) $id)) {
             throw new HttpResponseException(response()->json([
@@ -36,7 +31,7 @@ class ProductServiceUpdate
             ], Response::HTTP_NOT_FOUND));
         }
 
-        $validator = Validator::make($attributes, $this->rules($id));
+        $validator = Validator::make($attributes, $this->rules());
 
         if ($validator->fails()) {
             throw new HttpResponseException(response()->json([

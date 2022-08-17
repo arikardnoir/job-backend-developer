@@ -77,7 +77,16 @@ class ProductTest extends TestCase {
      * @return void
      */
     function test_update() {
+
         $attributes = [
+            'name' => "iPhone Xs",
+            'price' => 3600,
+            'description' => 'O Apple iPhone Xs é um smartphone iOS avançado e abrangente em todos os pontos de vista com algumas características excelentes.',
+            'category' => 'Smartphone',
+            'image_url' => 'https://imgs.extra.com.br/11823981/1xg.jpg?imwidth=500',
+        ];
+
+        $attributesUpdate = [
             'name' => "iPhone XIII",
             'price' => 45,
             'description' => 'O Apple iPhone XI é um smartphone iOS avançado e abrangente em todos os pontos de vista com algumas características excelentes.',
@@ -86,15 +95,19 @@ class ProductTest extends TestCase {
         ];
 
         $ProductRepository = new ProductRepository(new Product());
+        $productServiceRegistration = new ProductServiceRegistration(
+            $ProductRepository
+        );
+        $product = $productServiceRegistration->store($attributes);
 
         $productServiceUpdate = new ProductServiceUpdate(
                 $ProductRepository
         );
-        $product = $productServiceUpdate->update("2", $attributes);
-        dd($product);
-        if (!empty($product)) {
-            $expcetedProductId = Product::find($product->id);
-            $this->assertEquals($expcetedProductId->id, $product->id);
+        $productUpdate = $productServiceUpdate->update($product->id, $attributesUpdate);
+
+        if (!empty($productUpdate)) {
+            $expcetedProductId = Product::find($productUpdate->id);
+            $this->assertEquals($expcetedProductId->id, $productUpdate->id);
         }
 
     }

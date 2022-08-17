@@ -5,7 +5,7 @@ namespace Tests\Unit\Register;
 use App\Models\Product;
 use Tests\TestCase;
 
-class UserTest extends TestCase {
+class ProductTest extends TestCase {
 
     /**
      * A unit test for creates product.
